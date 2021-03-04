@@ -14,7 +14,7 @@ class User(models.Model):
 
 class profile(models.Model):
     user=models.OneToOneField(User1,on_delete=models.CASCADE,null=True,blank=True)
-    image=models.ImageField(default="",upload_to='profile_pics' )
+    image=models.ImageField(default="IIT_Guwahati_Logo.svg.png",upload_to='profile_pics' )
     def __str__(self):
         return 'Profile'
 class Post(models.Model):

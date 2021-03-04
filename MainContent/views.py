@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponsePermanentRedirect,JsonResponse
 from django.core.mail import send_mail
 
-#@login_required(login_url='login')
+#@login_required(login_url='login_page')
 #For searching cateogries
 def searchcategory(request):
     if 'term' in request.GET:
@@ -56,8 +56,8 @@ def register(request):
             return render(request,'register.html',{'form':form}) 
     else :
         return render(request,'register.html',{'form':form})              
-#@login_required(login_url='login')
 #Profile Page
+@login_required(login_url='login_page')
 def profile(request):
     img=request.user.profile.image.url
     img='..'+img
@@ -78,7 +78,7 @@ def post_page(request,id3,id,id1):
     user=request.user
     return render(request,"post_page.html",{'Post':post,"id1":id1,"id3":id3,"id":id,'total_likes':total_likes,"user":user})
 
-#@login_required(login_url='login')
+@login_required(login_url='login_page')
 #Update Profile Picture
 def Update_Profile_Photo(request):
     
@@ -105,6 +105,7 @@ def Question_Page(request,id3):
 
 
 #For adding answer related to a particular question
+@login_required(login_url='login_page')
 def addanswer(request,id,id3):   
      form1=posts() 
      if request.method == 'POST':
@@ -133,6 +134,7 @@ def addanswer(request,id,id3):
         return render(request,'addans.html',{'form':form1})
 
 #For adding questions related to a particular category
+@login_required(login_url='login_page')
 def addques(request,id3):
     if request.method == 'POST':
         form = request.POST
@@ -154,6 +156,7 @@ def addques(request,id3):
     else:
         return render(request,'addques.html')
 #For editing Answers
+@login_required(login_url='login_page')
 def editans(request,id,id1,id3):
     previousanswer =Post.objects.get(pk=id1)
     previousanswer_post =posts(request.POST or None,instance=previousanswer)
@@ -165,6 +168,7 @@ def editans(request,id,id1,id3):
         return render(request,'editans.html',{"ans":previousanswer_post})
 
 #For editing a question.
+@login_required(login_url='login_page')
 def editques(request,id,id3):
     previousquestion =Question.objects.get(pk=id)
     previousquestion =previousquestion.question
@@ -184,7 +188,7 @@ def editques(request,id,id3):
     else:
         return render(request,'editques.html',{"ques":previousquestion})
 
-#@login_required(login_url='login')
+@login_required(login_url='login_page')
 #For deleting a question
 def deleteques(request,id,id3):
     question=Question.objects.get(pk=id)
@@ -194,7 +198,7 @@ def deleteques(request,id,id3):
     question.delete()
     return  redirect('Question_Page',id3) 
 
-#@login_required(login_url='login')
+@login_required(login_url='login_page')
 #For deleting an answer
 def deleteans(request,id,id3,id1):
     answer =Post.objects.get(pk=id1)
@@ -202,7 +206,7 @@ def deleteans(request,id,id3,id1):
     answer.delete()
     return  redirect('anspage',id3,id)  
 
-#@login_required(login_url='login')
+@login_required(login_url='login_page')
 #For adding comments
 def addcomment(request,id,id1,id3):
     if request.method == 'POST':
@@ -221,7 +225,7 @@ def addcomment(request,id,id1,id3):
     else:
         return render(request,'addcomment.html')
 
-#@login_required(login_url='login')
+@login_required(login_url='login_page')
 #For liking an answer.
 def likeans(request,id,id1,id3):
     
@@ -230,7 +234,7 @@ def likeans(request,id,id1,id3):
     post.like.add(current_user)
     post.save()
     return redirect('post_page',id3,id,id1)
-#@login_required(login_url='login')
+
 #It shows all the different categories that are present on the website
 def categories(request):
     all_categories=category.objects.all()
