@@ -22,6 +22,12 @@ def searchcategory(request):
         for term in ca:
             title.append(term.category)
         return JsonResponse(title,safe=False)
+    else:
+         if request.POST:
+            required_category=category.objects.get(category=request.POST['tags'])
+            return redirect('Question_Page',required_category.pk)
+
+
     return render(request,'searchcategory.html')    
 
 
@@ -45,7 +51,7 @@ def register(request):
 
               messages.success(request,f'Account Saved!')
               
-              return HttpResponseRedirect('login')
+              return redirect('login_page')
         else :
             return render(request,'register.html',{'form':form}) 
     else :

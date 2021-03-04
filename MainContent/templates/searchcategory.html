@@ -19,8 +19,12 @@
 <body>
  
 <div class="ui-widget">
-  <label for="tags">Tags: </label>
-  <input id="tags">
+  <form method="POST">
+    {% csrf_token %}
+  <label for="tags">Category Name: </label>
+  <input id="tags" name="tags">
+  <button type="submit">Search</button>
+</form>
 </div>
  
  

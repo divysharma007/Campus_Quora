@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/',include('MainContent.urls')),
     url(r'^login/', include('django.contrib.auth.urls')),
-    url(r'^login/$',auth.LoginView.as_view(template_name="login.html"),name="login"),
+    url(r'^login/$',auth.LoginView.as_view(template_name="login.html"),name="login_page"),
      url(r'^logout/$',auth.LogoutView.as_view(template_name="logout.html"),name="logout"),
    
      url(r'^ckeditor/', include('ckeditor_uploader.urls')),
