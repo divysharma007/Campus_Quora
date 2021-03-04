@@ -1,0 +1,69 @@
+
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <style>
+  .back
+  {
+      width:100%;
+      height: 100%;
+  background-color:rgb(180, 238, 235);
+
+  display: flex;
+  }    
+  .card {
+    transition: 0.3s;
+    width:35%;
+    border-radius: 5px;
+    border-color: transparent;
+    padding:2%;
+    background-color:rgb(212, 223, 228);
+    margin:auto;
+    background-color: transparent;
+    
+    }
+  
+  img {
+    border-radius: 5px 5px 0 0;
+
+  }
+  
+  .center
+  {
+    margin: auto;
+    align-items: center;
+    display: inline-block;
+    vertical-align: middle;
+    
+  }
+  .container {
+    padding: 2px 16px;
+  }
+  </style>
+  </head>
+  <body >
+    {% load crispy_forms_tags %}
+    
+ <div class="back">
+    
+    <div class="card" >
+     
+    <h3> Sign Up!</h3>
+
+<form method="POST">
+    {% csrf_token %}
+  
+
+      {{form|crispy}}
+  
+      <button class="btn btn-primary">Sign Up</button>
+    </form>
+    
+    <div style="display: flex;flex-direction: right;"> <div style="margin-right: 1%;">  Already have an account then </div> <a href={% url 'login' %}>Click here</a> <div style="margin-right: 1%;"></div>to login in.</div></div>
+  
+  
+  </div>
+</div>
+
+</body>
+</html>
