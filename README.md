@@ -11,4 +11,7 @@ The project aimed to provide an IITG specific platform to exchange knowledge and
  **Comments** 
  Users can comment on any of the written answers.  
  **Like**  
- Users can like any answer if they find it helpful. Tech Stack Backend: Python, Django Frontend: HTML,CSS, Bootstrap, JQuery, AJAX
+ Users can like any answer if they find it helpful.
+ # Tech Stack 
+ **Backend:** Python, Django   
+ **Frontend:** HTML,CSS, Bootstrap, JQuery, AJAX
